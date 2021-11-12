@@ -19,6 +19,7 @@
 		70853283273D850100247114 /* PhotoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70853282273D850100247114 /* PhotoAPI.swift */; };
 		708E1DD6273E9441008A8DC9 /* PhotoSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708E1DD5273E9441008A8DC9 /* PhotoSearchViewController.swift */; };
 		708E1DD8273E9458008A8DC9 /* PhotoSearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 708E1DD7273E9458008A8DC9 /* PhotoSearchViewController.storyboard */; };
+		708E1DDC273E9B6C008A8DC9 /* PhotoSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708E1DDB273E9B6C008A8DC9 /* PhotoSearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		70853282273D850100247114 /* PhotoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAPI.swift; sourceTree = "<group>"; };
 		708E1DD5273E9441008A8DC9 /* PhotoSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchViewController.swift; sourceTree = "<group>"; };
 		708E1DD7273E9458008A8DC9 /* PhotoSearchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoSearchViewController.storyboard; sourceTree = "<group>"; };
+		708E1DDB273E9B6C008A8DC9 /* PhotoSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchViewModel.swift; sourceTree = "<group>"; };
 		873FB81096E30BA0D28AF3B7 /* Pods-pexels-photo-searcherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pexels-photo-searcherTests.release.xcconfig"; path = "Target Support Files/Pods-pexels-photo-searcherTests/Pods-pexels-photo-searcherTests.release.xcconfig"; sourceTree = "<group>"; };
 		93EE4F6291C38AD0BDA5EDF9 /* Pods-pexels-photo-searcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pexels-photo-searcher.debug.xcconfig"; path = "Target Support Files/Pods-pexels-photo-searcher/Pods-pexels-photo-searcher.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,6 +166,7 @@
 		70853274273D695900247114 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				708E1DDB273E9B6C008A8DC9 /* PhotoSearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 			files = (
 				70853281273D83D400247114 /* HTTPClient.swift in Sources */,
 				70853242273D5E4600247114 /* AppDelegate.swift in Sources */,
+				708E1DDC273E9B6C008A8DC9 /* PhotoSearchViewModel.swift in Sources */,
 				70853277273D78BA00247114 /* PhotoSearchResult.swift in Sources */,
 				708E1DD6273E9441008A8DC9 /* PhotoSearchViewController.swift in Sources */,
 				70853244273D5E4600247114 /* SceneDelegate.swift in Sources */,
