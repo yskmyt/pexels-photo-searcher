@@ -16,23 +16,26 @@ final class PhotoSearchViewController: UIViewController {
     private let disposeBag = DisposeBag()
 
     private lazy var viewModel = PhotoSearchViewModel(photoAPI: PhotoAPI(),
-                                                      searchTextObservable: searchBar.rx.text.asObservable())
+                                                      searchTextObservable: searchBar.rx.searchText)
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
-        bind()
+        setupBindings()
     }
 
-    private func bind() {
+
+    private func setupBindings() {
         viewModel.searchText
-            .bind(to: searchBar.rx.text)
+            .subscribe(onNext: {
+                self.viewModel.search(text: $0)
+            })
             .disposed(by: disposeBag)
-    }
-}
 
-extension PhotoSearchViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
+        viewModel.photos
+            .skip(1)
+            .subscribe(onNext: {
+                print($0)
+            })
+            .disposed(by: disposeBag)
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 // See https://www.pexels.com/api/documentation/#photos-search
-struct PhotoSearchResult: Decodable {
+struct PhotoSearchResult: Codable {
     let totalResults: Int
     let page: Int
     let perPage: Int
@@ -17,12 +17,7 @@ struct PhotoSearchResult: Decodable {
     let nextPage: String
 }
 
-struct PhotoData: Decodable {
-    let photoDataDetail: PhotoDataDetail
-    let liked: Bool
-}
-
-struct PhotoDataDetail: Decodable {
+struct PhotoData: Codable {
     let id: Int
     let width: Int
     let height: Int
@@ -32,9 +27,10 @@ struct PhotoDataDetail: Decodable {
     let photographerId: Int
     let avgColor: String
     let src: PhotoSource
+    let liked: Bool
 }
 
-struct PhotoSource: Decodable {
+struct PhotoSource: Codable {
     let original: String
     let large2x: String
     let large: String
@@ -43,13 +39,4 @@ struct PhotoSource: Decodable {
     let portrait: String
     let landscape: String
     let tiny: String
-}
-
-fileprivate enum CodingKeys: String, CodingKey {
-    case totalResults = "total_results"
-    case perPage = "per_page"
-    case nextPage = "next_page"
-    case photographerUrl = "photographer_url"
-    case photographerId = "photographer_id"
-    case avgColor = "avg_color"
 }

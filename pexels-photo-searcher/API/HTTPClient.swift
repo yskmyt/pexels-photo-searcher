@@ -15,7 +15,7 @@ enum HTTPMethod: String {
 }
 
 protocol IHttpClient {
-    func get<T: Decodable>(path: String, parameters: [String:String]?, headers: [String:String]?) -> Observable<T>
+    func get<T: Decodable>(responseType: T.Type, path: String, parameters: [String:String]?, headers: [String:String]?) -> Observable<T>
 }
 
 final class HTTPClient: IHttpClient {
@@ -25,11 +25,13 @@ final class HTTPClient: IHttpClient {
         self.baseUrlString = baseUrlString
     }
 
-    func get<T: Decodable>(path: String, parameters: [String:String]?, headers: [String:String]?) -> Observable<T> {
+    func get<T: Decodable>(responseType: T.Type, path: String, parameters: [String:String]?, headers: [String:String]?) -> Observable<T> {
         let request = makeRequest(method: HTTPMethod.GET, path: path, parameters: parameters, headers: headers)
         return URLSession.shared.rx.response(request: request)
             .map { response, data in
-                return try JSONDecoder().decode(T.self, from: data)
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                return try decoder.decode(T.self, from: data)
         }
         .asObservable()
     }
@@ -49,13 +51,13 @@ extension HTTPClient {
             URLQueryItem(name: String($0), value: String($1))
         }
 
-        guard let url = components.url else {
-            fatalError("Could not get url")
+        guard let urlString = components.url?.absoluteString.removingPercentEncoding,
+            let url = URL(string: urlString) else {
+                fatalError("Could not get url")
         }
-
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
         return setHeader(headers: headers, request: request)
     }
 

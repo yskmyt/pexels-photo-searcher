@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		14F67A1CF8028B8C127B0AAC /* Pods_pexels_photo_searcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A47B83C020D928B2B5D7D79 /* Pods_pexels_photo_searcher.framework */; };
+		70648152273EB14E008C3CAB /* CustomRxSearchBarDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70648151273EB14E008C3CAB /* CustomRxSearchBarDelegateProxy.swift */; };
 		70853242273D5E4600247114 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70853241273D5E4600247114 /* AppDelegate.swift */; };
 		70853244273D5E4600247114 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70853243273D5E4600247114 /* SceneDelegate.swift */; };
 		7085324B273D5E4700247114 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7085324A273D5E4700247114 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		1FF4E123B2E2C16444CF25B4 /* Pods-pexels-photo-searcher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pexels-photo-searcher.release.xcconfig"; path = "Target Support Files/Pods-pexels-photo-searcher/Pods-pexels-photo-searcher.release.xcconfig"; sourceTree = "<group>"; };
 		251B7DC4A7A82881A649644A /* Pods-pexels-photo-searcherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pexels-photo-searcherTests.debug.xcconfig"; path = "Target Support Files/Pods-pexels-photo-searcherTests/Pods-pexels-photo-searcherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5A47B83C020D928B2B5D7D79 /* Pods_pexels_photo_searcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_pexels_photo_searcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70648151273EB14E008C3CAB /* CustomRxSearchBarDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRxSearchBarDelegateProxy.swift; sourceTree = "<group>"; };
 		7085323E273D5E4600247114 /* pexels-photo-searcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pexels-photo-searcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70853241273D5E4600247114 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70853243273D5E4600247114 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +93,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		70648150273EB124008C3CAB /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				70648151273EB14E008C3CAB /* CustomRxSearchBarDelegateProxy.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		70853235273D5E4600247114 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +131,7 @@
 				70853274273D695900247114 /* ViewModel */,
 				70853271273D692F00247114 /* Model */,
 				70853275273D696700247114 /* API */,
+				70648150273EB124008C3CAB /* Delegate */,
 				70853241273D5E4600247114 /* AppDelegate.swift */,
 				70853243273D5E4600247114 /* SceneDelegate.swift */,
 				7085324A273D5E4700247114 /* Assets.xcassets */,
@@ -390,6 +401,7 @@
 				708E1DD6273E9441008A8DC9 /* PhotoSearchViewController.swift in Sources */,
 				70853244273D5E4600247114 /* SceneDelegate.swift in Sources */,
 				70853283273D850100247114 /* PhotoAPI.swift in Sources */,
+				70648152273EB14E008C3CAB /* CustomRxSearchBarDelegateProxy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
