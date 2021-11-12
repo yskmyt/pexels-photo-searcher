@@ -10,8 +10,6 @@
 		14F67A1CF8028B8C127B0AAC /* Pods_pexels_photo_searcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A47B83C020D928B2B5D7D79 /* Pods_pexels_photo_searcher.framework */; };
 		70853242273D5E4600247114 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70853241273D5E4600247114 /* AppDelegate.swift */; };
 		70853244273D5E4600247114 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70853243273D5E4600247114 /* SceneDelegate.swift */; };
-		70853246273D5E4600247114 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70853245273D5E4600247114 /* ViewController.swift */; };
-		70853249273D5E4600247114 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70853247273D5E4600247114 /* Main.storyboard */; };
 		7085324B273D5E4700247114 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7085324A273D5E4700247114 /* Assets.xcassets */; };
 		7085324E273D5E4700247114 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7085324C273D5E4700247114 /* LaunchScreen.storyboard */; };
 		70853259273D5E4700247114 /* pexels_photo_searcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70853258273D5E4700247114 /* pexels_photo_searcherTests.swift */; };
@@ -19,6 +17,8 @@
 		70853277273D78BA00247114 /* PhotoSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70853276273D78BA00247114 /* PhotoSearchResult.swift */; };
 		70853281273D83D400247114 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70853280273D83D400247114 /* HTTPClient.swift */; };
 		70853283273D850100247114 /* PhotoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70853282273D850100247114 /* PhotoAPI.swift */; };
+		708E1DD6273E9441008A8DC9 /* PhotoSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708E1DD5273E9441008A8DC9 /* PhotoSearchViewController.swift */; };
+		708E1DD8273E9458008A8DC9 /* PhotoSearchViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 708E1DD7273E9458008A8DC9 /* PhotoSearchViewController.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,8 +45,6 @@
 		7085323E273D5E4600247114 /* pexels-photo-searcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pexels-photo-searcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70853241273D5E4600247114 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70853243273D5E4600247114 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		70853245273D5E4600247114 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		70853248273D5E4600247114 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7085324A273D5E4700247114 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7085324D273D5E4700247114 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7085324F273D5E4700247114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -59,6 +57,8 @@
 		70853276273D78BA00247114 /* PhotoSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchResult.swift; sourceTree = "<group>"; };
 		70853280273D83D400247114 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		70853282273D850100247114 /* PhotoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAPI.swift; sourceTree = "<group>"; };
+		708E1DD5273E9441008A8DC9 /* PhotoSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchViewController.swift; sourceTree = "<group>"; };
+		708E1DD7273E9458008A8DC9 /* PhotoSearchViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoSearchViewController.storyboard; sourceTree = "<group>"; };
 		873FB81096E30BA0D28AF3B7 /* Pods-pexels-photo-searcherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pexels-photo-searcherTests.release.xcconfig"; path = "Target Support Files/Pods-pexels-photo-searcherTests/Pods-pexels-photo-searcherTests.release.xcconfig"; sourceTree = "<group>"; };
 		93EE4F6291C38AD0BDA5EDF9 /* Pods-pexels-photo-searcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pexels-photo-searcher.debug.xcconfig"; path = "Target Support Files/Pods-pexels-photo-searcher/Pods-pexels-photo-searcher.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,14 +115,12 @@
 			isa = PBXGroup;
 			children = (
 				70853272273D694900247114 /* View */,
-				70853273273D695100247114 /* Controller */,
+				708E1DD4273E9425008A8DC9 /* Controller */,
 				70853274273D695900247114 /* ViewModel */,
 				70853271273D692F00247114 /* Model */,
 				70853275273D696700247114 /* API */,
 				70853241273D5E4600247114 /* AppDelegate.swift */,
 				70853243273D5E4600247114 /* SceneDelegate.swift */,
-				70853245273D5E4600247114 /* ViewController.swift */,
-				70853247273D5E4600247114 /* Main.storyboard */,
 				7085324A273D5E4700247114 /* Assets.xcassets */,
 				7085324C273D5E4700247114 /* LaunchScreen.storyboard */,
 				7085324F273D5E4700247114 /* Info.plist */,
@@ -163,13 +161,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		70853273273D695100247114 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		70853274273D695900247114 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +175,15 @@
 				70853282273D850100247114 /* PhotoAPI.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		708E1DD4273E9425008A8DC9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				708E1DD5273E9441008A8DC9 /* PhotoSearchViewController.swift */,
+				708E1DD7273E9458008A8DC9 /* PhotoSearchViewController.storyboard */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		A3BAE4B7C83FF90BBCE19090 /* Pods */ = {
@@ -313,7 +313,7 @@
 			files = (
 				7085324E273D5E4700247114 /* LaunchScreen.storyboard in Resources */,
 				7085324B273D5E4700247114 /* Assets.xcassets in Resources */,
-				70853249273D5E4600247114 /* Main.storyboard in Resources */,
+				708E1DD8273E9458008A8DC9 /* PhotoSearchViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,10 +380,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70853246273D5E4600247114 /* ViewController.swift in Sources */,
 				70853281273D83D400247114 /* HTTPClient.swift in Sources */,
 				70853242273D5E4600247114 /* AppDelegate.swift in Sources */,
 				70853277273D78BA00247114 /* PhotoSearchResult.swift in Sources */,
+				708E1DD6273E9441008A8DC9 /* PhotoSearchViewController.swift in Sources */,
 				70853244273D5E4600247114 /* SceneDelegate.swift in Sources */,
 				70853283273D850100247114 /* PhotoAPI.swift in Sources */,
 			);
@@ -421,14 +421,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		70853247273D5E4600247114 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				70853248273D5E4600247114 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		7085324C273D5E4700247114 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

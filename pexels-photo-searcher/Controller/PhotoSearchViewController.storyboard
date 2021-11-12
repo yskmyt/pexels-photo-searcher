@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zVy-GG-o27">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Photo Search View Controller-->
+        <scene sceneID="Gwp-gx-xwK">
+            <objects>
+                <viewController storyboardIdentifier="PhotoSearchViewController" id="wzW-QF-g7C" customClass="PhotoSearchViewController" customModule="pexels_photo_searcher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HqL-KP-mDy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="IE8-Mx-Hnw">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kWT-vs-2N7">
+                                <rect key="frame" x="0.0" y="144" width="414" height="718"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YiU-g6-aPV">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="IE8-Mx-Hnw" firstAttribute="top" secondItem="b1F-Nu-Uhs" secondAttribute="top" id="3jl-2n-xBY"/>
+                            <constraint firstItem="b1F-Nu-Uhs" firstAttribute="trailing" secondItem="IE8-Mx-Hnw" secondAttribute="trailing" id="8q0-Eh-bGv"/>
+                            <constraint firstItem="b1F-Nu-Uhs" firstAttribute="bottom" secondItem="kWT-vs-2N7" secondAttribute="bottom" id="TkA-Pt-BdJ"/>
+                            <constraint firstItem="b1F-Nu-Uhs" firstAttribute="trailing" secondItem="kWT-vs-2N7" secondAttribute="trailing" id="Wbg-f4-Lzy"/>
+                            <constraint firstItem="kWT-vs-2N7" firstAttribute="leading" secondItem="b1F-Nu-Uhs" secondAttribute="leading" id="g6m-bH-5jI"/>
+                            <constraint firstItem="kWT-vs-2N7" firstAttribute="top" secondItem="IE8-Mx-Hnw" secondAttribute="bottom" id="jrM-6f-RaE"/>
+                            <constraint firstItem="IE8-Mx-Hnw" firstAttribute="leading" secondItem="b1F-Nu-Uhs" secondAttribute="leading" id="un3-x1-KCA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="b1F-Nu-Uhs"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="i10-Sl-2W5"/>
+                    <connections>
+                        <outlet property="collectionView" destination="kWT-vs-2N7" id="9LL-uQ-g6p"/>
+                        <outlet property="searchBar" destination="IE8-Mx-Hnw" id="MfI-Tb-e5i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0HD-um-QQS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1200" y="300.66964285714283"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kR9-zQ-HR8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zVy-GG-o27" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Vml-bQ-5bg">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wzW-QF-g7C" kind="relationship" relationship="rootViewController" id="x8z-XO-XGQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ibB-qG-tkn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="289.85507246376812" y="300.66964285714283"/>
+        </scene>
+    </scenes>
+</document>
