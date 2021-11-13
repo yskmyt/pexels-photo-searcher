@@ -42,7 +42,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         self.bringSubviewToFront(contentView)
     }
 
-    func configure(_ data: PhotoData) {
+    func configure(_ data: PhotoCellData) {
         testLabel.text = data.photographer
     }
 

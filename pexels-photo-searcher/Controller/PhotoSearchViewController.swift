@@ -15,35 +15,31 @@ final class PhotoSearchViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
 
-    private lazy var viewModel = PhotoSearchViewModel(photoAPI: PhotoAPI(),
-                                                      searchTextObservable: searchBar.rx.searchText)
+    private lazy var viewModel = PhotoSearchViewModel(photoAPI: PhotoAPI())
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBindings()
+        setupSearchBar()
         setupCollectionView()
     }
 
 
     private func setupBindings() {
-        viewModel.searchText
-            .subscribe(onNext: { [unowned self] in
-                self.viewModel.search(text: $0)
-            })
-            .disposed(by: disposeBag)
-
-        viewModel.photos
+        viewModel.cellDataList
             .bind(to: collectionView.rx.items(
                     cellIdentifier: PhotoCollectionViewCell.identifier,
                     cellType: PhotoCollectionViewCell.self)
             ) { (row, element, cell) in
                 cell.configure(element)
-                switch(row % 3) {
-                    case 1: cell.backgroundColor = .red
-                    case 2: cell.backgroundColor = .blue
-                    default: cell.backgroundColor = .green
-                }
             }
+            .disposed(by: disposeBag)
+    }
+
+    private func setupSearchBar() {
+        searchBar.rx.searchText
+            .flatMap { Observable.just($0) }
+            .subscribe(onNext: { [weak self] in self?.viewModel.search(text: $0) })
             .disposed(by: disposeBag)
     }
     
@@ -52,7 +48,7 @@ final class PhotoSearchViewController: UIViewController {
         collectionView.register(PhotoCollectionViewCell.self,
                                 forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
         collectionView.rx
-            .modelSelected(PhotoData.self)
+            .modelSelected(PhotoCellData.self)
             .bind { data in
                 print(data)
             }

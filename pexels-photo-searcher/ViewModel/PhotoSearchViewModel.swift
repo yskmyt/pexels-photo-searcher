@@ -11,45 +11,57 @@ import RxCocoa
 
 final class PhotoSearchViewModel {
     private let photoAPI: IPhotoAPI
-    let searchText: Observable<String>
 
-    private(set) var photos = BehaviorRelay<[PhotoData]>(value: [])
+    private(set) var cellDataList = BehaviorRelay<[PhotoCellData]>(value: [])
 
     private let disposeBag = DisposeBag()
 
     private let perPage = 20
     private var currentPage = 1
     
-    init(photoAPI: IPhotoAPI,
-         searchTextObservable: Observable<String>) {
+    init(photoAPI: IPhotoAPI) {
         self.photoAPI = photoAPI
-        self.searchText = searchTextObservable
     }
 
     func search(text: String) {
-        photoAPI.fetchPhotos(searchText: text, page: 1, perPage: perPage)
-            .subscribe(onNext: { [unowned self] result in
-                self.setPhotos(result.photos)
-                self.currentPage = 1
+        photoAPI.fetchPhotoData(searchText: text, page: 1, perPage: perPage)
+            .subscribe(onNext: { [weak self] result in
+                self?.downloadImages(result.photos)
+                self?.currentPage = 1
             })
             .disposed(by: disposeBag)
     }
 
-    func loadMorePhotos(text: String) {
-        photoAPI.fetchPhotos(searchText: text, page: currentPage + 1, perPage: perPage)
-            .subscribe(onNext: { [unowned self] result in
-                self.appendPhotos(result.photos)
-                self.currentPage += 1
+    private func downloadImages(_ photoDataList: [PhotoData]) {
+        photoDataList.forEach { downloadImage($0) }
+    }
+
+    private func downloadImage(_ data: PhotoData) {
+        photoAPI.downloadImage(url: data.src.medium)
+            .subscribe(onNext: { [weak self] image in
+                let cellData = self?.makeCellData(data: data, image: image)
+                self?.appendCellData(cellData)
             })
             .disposed(by: disposeBag)
     }
 
-    private func setPhotos(_ items: [PhotoData]) {
-        photos.accept(items)
+    private func makeCellData(data: PhotoData, image: UIImage) -> PhotoCellData {
+        return PhotoCellData(id: data.id,
+                             photographer: data.photographer,
+                             photographerUrl: data.photographerUrl,
+                             image: image)
     }
 
-    private func appendPhotos(_ addedItems: [PhotoData]) {
-        let current = photos.value
-        photos.accept(current + addedItems)
+    private func appendCellData(_ appendData: PhotoCellData?) {
+        guard let data = appendData else { return }
+        let current = cellDataList.value
+        cellDataList.accept(current + [data])
     }
+}
+
+struct PhotoCellData {
+    let id: Int
+    let photographer: String
+    let photographerUrl: String
+    let image: UIImage
 }

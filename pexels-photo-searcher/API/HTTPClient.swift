@@ -9,6 +9,7 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import UIKit
 
 enum HTTPMethod: String {
     case GET = "GET"
@@ -34,6 +35,18 @@ final class HTTPClient: IHttpClient {
                 return try decoder.decode(T.self, from: data)
         }
         .asObservable()
+    }
+
+    func getImage(url: String, headers: [String:String]?) -> Observable<UIImage> {
+        guard let url = URL(string: url) else {
+            return Observable<UIImage>.of(UIImage())
+        }
+        let request = URLRequest(url: url)
+        return URLSession.shared.rx.response(request: request)
+            .map { response, data in
+                return UIImage(data: data) ?? UIImage()
+            }
+            .asObservable()
     }
 }
 
