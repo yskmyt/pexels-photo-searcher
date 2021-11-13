@@ -11,7 +11,12 @@ import RxSwift
 
 final class PhotoSearchViewController: UIViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
-    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView! {
+        didSet {
+            collectionView.register(PhotoCollectionViewCell.self,
+                                    forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
+        }
+    }
 
     private let disposeBag = DisposeBag()
 
@@ -32,10 +37,15 @@ final class PhotoSearchViewController: UIViewController {
             .disposed(by: disposeBag)
 
         viewModel.photos
-            .skip(1)
-            .subscribe(onNext: {
-                print($0)
-            })
-            .disposed(by: disposeBag)
+            .asDriver(onErrorJustReturn: [])
+            .drive(
+                collectionView.rx.items(
+                    cellIdentifier: PhotoCollectionViewCell.identifier,
+                    cellType: PhotoCollectionViewCell.self
+                )
+            ) { (_, element, cell) in
+                cell.configure(element)
+        }
+        .disposed(by: disposeBag)
     }
 }
