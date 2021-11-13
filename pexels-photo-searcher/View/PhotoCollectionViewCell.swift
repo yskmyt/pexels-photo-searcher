@@ -14,6 +14,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     }
 
     @IBOutlet private weak var testLabel: UILabel!
+    @IBOutlet private weak var imageView: UIImageView!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,10 +41,15 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
 
     private func initializeView() {
         self.bringSubviewToFront(contentView)
+        setupImageView()
+    }
+
+    private func setupImageView() {
+        imageView.contentMode = .scaleAspectFill
     }
 
     func configure(_ data: PhotoCellData) {
         testLabel.text = data.photographer
+        imageView.image = data.image
     }
-
 }

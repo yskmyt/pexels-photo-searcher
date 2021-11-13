@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoCollectionViewCell" customModule="pexels_photo_searcher" customModuleProvider="target">
             <connections>
+                <outlet property="imageView" destination="1ST-qs-vGm" id="6AH-kS-Qhu"/>
                 <outlet property="testLabel" destination="3s8-xp-pdt" id="mG5-DX-F8f"/>
             </connections>
         </placeholder>
@@ -21,16 +22,24 @@
                 <rect key="frame" x="0.0" y="0.0" width="160" height="161"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3s8-xp-pdt">
-                        <rect key="frame" x="59" y="70" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3s8-xp-pdt">
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1ST-qs-vGm">
+                        <rect key="frame" x="0.0" y="19.5" width="160" height="141.5"/>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="3s8-xp-pdt" firstAttribute="centerY" secondItem="8ny-y9-8Q6" secondAttribute="centerY" id="STR-QV-uJF"/>
-                    <constraint firstItem="3s8-xp-pdt" firstAttribute="centerX" secondItem="8ny-y9-8Q6" secondAttribute="centerX" id="xYh-NQ-LXs"/>
+                    <constraint firstItem="3s8-xp-pdt" firstAttribute="leading" secondItem="8ny-y9-8Q6" secondAttribute="leading" id="HGc-dX-nES"/>
+                    <constraint firstItem="1ST-qs-vGm" firstAttribute="leading" secondItem="8ny-y9-8Q6" secondAttribute="leading" id="Im0-wq-gbd"/>
+                    <constraint firstItem="3s8-xp-pdt" firstAttribute="top" secondItem="8ny-y9-8Q6" secondAttribute="top" id="TLN-k5-g4I"/>
+                    <constraint firstAttribute="trailing" secondItem="1ST-qs-vGm" secondAttribute="trailing" id="Trq-mH-5Wf"/>
+                    <constraint firstItem="1ST-qs-vGm" firstAttribute="top" secondItem="3s8-xp-pdt" secondAttribute="bottom" id="j47-6s-dBO"/>
+                    <constraint firstAttribute="trailing" secondItem="3s8-xp-pdt" secondAttribute="trailing" id="lZb-vD-O3Z"/>
+                    <constraint firstAttribute="bottom" secondItem="1ST-qs-vGm" secondAttribute="bottom" id="pRu-nL-Xyj"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="160" height="161"/>
