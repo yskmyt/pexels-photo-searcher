@@ -27,7 +27,7 @@ extension Reactive where Base: UISearchBar {
                 }
                 searchBar.resignFirstResponder()
                 return searchBar.text ?? ""
-            }
+            }.distinctUntilChanged()
     }
 }
 
