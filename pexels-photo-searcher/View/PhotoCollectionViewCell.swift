@@ -18,12 +18,13 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadFromNib()
-
+        initializeView()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadFromNib()
+        initializeView()
     }
 
     private func loadFromNib() {
@@ -35,6 +36,10 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         view.frame = self.bounds
         view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         addSubview(view)
+    }
+
+    private func initializeView() {
+        self.bringSubviewToFront(contentView)
     }
 
     func configure(_ data: PhotoData) {

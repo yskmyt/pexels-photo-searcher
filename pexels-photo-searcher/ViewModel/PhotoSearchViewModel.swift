@@ -28,20 +28,17 @@ final class PhotoSearchViewModel {
 
     func search(text: String) {
         photoAPI.fetchPhotos(searchText: text, page: 1, perPage: perPage)
-            .subscribe(onNext: { result in
-            let photos = result.photos
-
-            self.setPhotos(photos)
-            self.currentPage = 1
-        })
-        .disposed(by: disposeBag)
+            .subscribe(onNext: { [unowned self] result in
+                self.setPhotos(result.photos)
+                self.currentPage = 1
+            })
+            .disposed(by: disposeBag)
     }
 
     func loadMorePhotos(text: String) {
         photoAPI.fetchPhotos(searchText: text, page: currentPage + 1, perPage: perPage)
-            .subscribe(onNext: { result in
-                let photos = result.photos
-                self.appendPhotos(photos)
+            .subscribe(onNext: { [unowned self] result in
+                self.appendPhotos(result.photos)
                 self.currentPage += 1
             })
             .disposed(by: disposeBag)

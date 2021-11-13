@@ -27,18 +27,15 @@ final class PhotoSearchViewController: UIViewController {
 
     private func setupBindings() {
         viewModel.searchText
-            .subscribe(onNext: {
+            .subscribe(onNext: { [unowned self] in
                 self.viewModel.search(text: $0)
             })
             .disposed(by: disposeBag)
 
         viewModel.photos
-            .asDriver(onErrorJustReturn: [])
-            .drive(
-                collectionView.rx.items(
+            .bind(to: collectionView.rx.items(
                     cellIdentifier: PhotoCollectionViewCell.identifier,
-                    cellType: PhotoCollectionViewCell.self
-                )
+                    cellType: PhotoCollectionViewCell.self)
             ) { (row, element, cell) in
                 cell.configure(element)
                 switch(row % 3) {
@@ -46,29 +43,28 @@ final class PhotoSearchViewController: UIViewController {
                     case 2: cell.backgroundColor = .blue
                     default: cell.backgroundColor = .green
                 }
-
-        }
-        .disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
     }
-
+    
     private func setupCollectionView() {
         setFlowLayout()
         collectionView.register(PhotoCollectionViewCell.self,
                                 forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
-
-        collectionView.rx.modelSelected(PhotoData.self)
-            .subscribe(onNext: { print($0) },
-                       onError: { error in print(error) },
-                       onCompleted: { print("onCompleted") },
-                       onDisposed: { print("onDisposed") })
+        collectionView.rx
+            .modelSelected(PhotoData.self)
+            .bind { data in
+                print(data)
+            }
             .disposed(by: disposeBag)
     }
 
     private func setFlowLayout() {
         let layout = UICollectionViewFlowLayout()
-        let itemWitdh = collectionView.bounds.width / CGFloat(3)
+        let itemWidth = (collectionView.bounds.width - CGFloat(30)) / CGFloat(3)
         layout.minimumInteritemSpacing = 0
-        layout.itemSize = CGSize(width: itemWitdh, height: itemWitdh)
+        layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
         collectionView.setCollectionViewLayout(layout, animated: true)
     }
 }
+
