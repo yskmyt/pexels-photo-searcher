@@ -49,9 +49,7 @@ final class PhotoSearchViewController: UIViewController {
                                 forCellWithReuseIdentifier: PhotoCollectionViewCell.identifier)
         collectionView.rx
             .modelSelected(PhotoCellData.self)
-            .bind { data in
-                print(data)
-            }
+            .bind { [weak self] data in self?.didSelectPhoto(data) }
             .disposed(by: disposeBag)
     }
 
@@ -61,6 +59,13 @@ final class PhotoSearchViewController: UIViewController {
         layout.minimumInteritemSpacing = 0
         layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
         collectionView.setCollectionViewLayout(layout, animated: true)
+    }
+
+    private func didSelectPhoto(_ data: PhotoCellData) {
+        guard let viewController = PickedPhotoViewController.instantiate(data: data) else {
+            return
+        }
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
