@@ -11,12 +11,9 @@ import RxCocoa
 import RxSwift
 import UIKit
 
-enum HTTPMethod: String {
-    case GET = "GET"
-}
-
 protocol IHttpClient {
-    func get<T: Decodable>(responseType: T.Type, path: String, parameters: [String:String]?, headers: [String:String]?) -> Observable<T>
+    func get<T: Decodable>(responseType: T.Type, path: String, headers: [String:String]?) -> Observable<T>
+    func get<T: Decodable>(responseType: T.Type, url: String, headers: [String:String]?) -> Observable<T>
 }
 
 final class HTTPClient: IHttpClient {
@@ -26,8 +23,10 @@ final class HTTPClient: IHttpClient {
         self.baseUrlString = baseUrlString
     }
 
-    func get<T: Decodable>(responseType: T.Type, path: String, parameters: [String:String]?, headers: [String:String]?) -> Observable<T> {
-        let request = makeRequest(method: HTTPMethod.GET, path: path, parameters: parameters, headers: headers)
+    //　for path only url
+    func get<T: Decodable>(responseType: T.Type, path: String, headers: [String:String]?) -> Observable<T> {
+        let wrapUrl = wrapUrl(path)
+        let request = makeRequest(method: HTTPMethod.GET, url: wrapUrl, headers: headers)
         return URLSession.shared.rx.response(request: request)
             .map { response, data in
                 let decoder = JSONDecoder()
@@ -37,37 +36,29 @@ final class HTTPClient: IHttpClient {
         .asObservable()
     }
 
-    func getImage(url: String, headers: [String:String]?) -> Observable<UIImage> {
-        guard let url = URL(string: url) else {
-            return Observable<UIImage>.of(UIImage())
-        }
-        let request = URLRequest(url: url)
+    //　for protocol include url
+    func get<T: Decodable>(responseType: T.Type, url: String, headers: [String:String]?) -> Observable<T> {
+        let request = makeRequest(method: HTTPMethod.GET, url: url, headers: headers)
         return URLSession.shared.rx.response(request: request)
             .map { response, data in
-                return UIImage(data: data) ?? UIImage()
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                return try decoder.decode(T.self, from: data)
             }
             .asObservable()
     }
 }
 
 extension HTTPClient {
-    private func makeRequest(method: HTTPMethod, path: String, parameters: [String:String]?, headers: [String:String]?) -> URLRequest {
-        guard let baseURL = URL(string: baseUrlString) else {
-            fatalError("Unable to convert \(baseUrlString) to URL")
+    private func wrapUrl(_ url: String) -> String {
+        self.baseUrlString + url
+    }
+
+    private func makeRequest(method: HTTPMethod, url: String, headers: [String:String]?) -> URLRequest {
+        guard let url = URL(string: url) else {
+            fatalError("Unable to convert \(url) to URL")
         }
 
-        guard var components = URLComponents(url: baseURL.appendingPathComponent(path), resolvingAgainstBaseURL: false) else {
-            fatalError("Unable to create URL components")
-        }
-
-        components.queryItems = parameters?.map {
-            URLQueryItem(name: String($0), value: String($1))
-        }
-
-        guard let urlString = components.url?.absoluteString.removingPercentEncoding,
-            let url = URL(string: urlString) else {
-                fatalError("Could not get url")
-        }
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -84,4 +75,12 @@ extension HTTPClient {
         }
         return _request
     }
+}
+
+enum HTTPMethod: String {
+    case GET = "GET"
+}
+
+enum HTTPError: Error {
+    case jsonDecode
 }

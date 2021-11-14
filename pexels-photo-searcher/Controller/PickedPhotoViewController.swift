@@ -31,9 +31,7 @@ class PickedPhotoViewController: UIViewController {
     }
 
     private func setupBindings() {
-        viewModel.image
-            .bind(to: imageView.rx.image)
-            .disposed(by: disposeBag)
+
     }
 
     private func setupImageView() {

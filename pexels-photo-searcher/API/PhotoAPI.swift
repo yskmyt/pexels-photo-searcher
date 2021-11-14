@@ -11,23 +11,24 @@ import RxSwift
 import UIKit
 
 protocol IPhotoAPI {
-    func fetchPhotoData(searchText: String, page: Int, perPage: Int) -> Observable<PhotoSearchResult>
-    func downloadImage(url: String) -> Observable<UIImage>
+    func fetchPhotoData(searchText: String, perPage: Int) -> Observable<PhotoSearchResult>
+    func fetchNextPhotoData(url: String) -> Observable<PhotoSearchResult>
 }
 
 final class PhotoAPI: IPhotoAPI {
     private let client = HTTPClient(baseUrlString: "https://api.pexels.com/v1")
     private let authorizationHeader = ["Authorization": "563492ad6f917000010000010cc68d895d954cce83553bc14c009f0e"]
 
-    func fetchPhotoData(searchText: String, page: Int, perPage: Int) -> Observable<PhotoSearchResult> {
-        let path = "/search?query=\(searchText)&per_page=\(perPage)&page=\(page)"
+    func fetchPhotoData(searchText: String, perPage: Int) -> Observable<PhotoSearchResult> {
+        let path = "/search?query=\(searchText)&per_page=\(perPage)&page=1"
         return client.get(responseType: PhotoSearchResult.self,
                           path: path,
-                          parameters: nil,
                           headers: authorizationHeader)
     }
 
-    func downloadImage(url: String) -> Observable<UIImage> {
-        return client.getImage(url: url, headers: authorizationHeader)
+    func fetchNextPhotoData(url: String) -> Observable<PhotoSearchResult> {
+        return client.get(responseType: PhotoSearchResult.self,
+                          url: url,
+                          headers: authorizationHeader)
     }
 }

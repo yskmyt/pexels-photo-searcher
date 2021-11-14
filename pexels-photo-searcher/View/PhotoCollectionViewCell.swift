@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class PhotoCollectionViewCell: UICollectionViewCell {
     static var identifier: String {
@@ -15,6 +16,8 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet private weak var testLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
+
+    private var disposeBag = DisposeBag()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,6 +29,13 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         super.init(coder: coder)
         loadFromNib()
         initializeView()
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+        testLabel.text = ""
+        imageView.image = nil
     }
 
     private func loadFromNib() {
@@ -48,8 +58,17 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
     }
 
+    private func loadImage(from url: String) -> Observable<UIImage?> {
+        guard let url = URL(string: url) else {
+            return Observable.just(nil).single()
+        }
+        return ImageLoader.shared.loadImage(from: url)
+    }
+
     func configure(_ data: PhotoCellData) {
         testLabel.text = data.photographer
-        imageView.image = data.image
+        loadImage(from: data.imageUrl)
+            .bind(to: imageView.rx.image)
+            .disposed(by: disposeBag)
     }
 }

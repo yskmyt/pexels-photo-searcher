@@ -14,7 +14,8 @@ struct PhotoSearchResult: Codable {
     let page: Int
     let perPage: Int
     let photos: [PhotoData]
-    let nextPage: String
+    let nextPage: String?
+    let prevPage: String?
 }
 
 struct PhotoData: Codable {

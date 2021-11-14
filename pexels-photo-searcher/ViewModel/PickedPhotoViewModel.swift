@@ -11,10 +11,8 @@ import RxSwift
 
 final class PickedPhotoViewModel {
     private(set) var photographer = Observable<String>.empty()
-    private(set) var image = Observable<UIImage>.empty()
 
     func setPhotoCellData(_ data: PhotoCellData) {
         self.photographer = Observable.just(data.photographer)
-        self.image = Observable.just(data.image)
     }
 }
