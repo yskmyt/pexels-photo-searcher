@@ -20,10 +20,10 @@ final class PhotoSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBindings()
+        setupNavigationBar()
         setupSearchBar()
         setupCollectionView()
     }
-
 
     private func setupBindings() {
         viewModel.cellDataList
@@ -34,6 +34,25 @@ final class PhotoSearchViewController: UIViewController {
                 cell.configure(element)
             }
             .disposed(by: disposeBag)
+    }
+
+    private func setupNavigationBar() {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(named:"pexelsLogo"), for: .normal)
+        button.addTarget(self, action: #selector(didTapLogo), for: .touchUpInside)
+
+        let menuBarItem = UIBarButtonItem(customView: button)
+        let widthAnchor = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 80)
+        let heightAnchor = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 33)
+        widthAnchor?.isActive = true
+        heightAnchor?.isActive = true
+        self.navigationItem.leftBarButtonItem = menuBarItem
+    }
+
+    @objc private func didTapLogo() {
+        if let url = URL(string: Constants.PEXELS_HOME_URL) {
+            UIApplication.shared.open(url)
+        }
     }
 
     private func setupSearchBar() {
@@ -82,3 +101,8 @@ final class PhotoSearchViewController: UIViewController {
     }
 }
 
+extension UIScrollView {
+    func isNearBottomEdge(edgeOffset: CGFloat = 20.0) -> Bool {
+        return contentOffset.y + frame.size.height + edgeOffset > contentSize.height
+    }
+}

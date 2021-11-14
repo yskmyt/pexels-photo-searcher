@@ -11,9 +11,9 @@
 		70039397274039FE008F397E /* PickedPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70039396274039FE008F397E /* PickedPhotoViewController.swift */; };
 		7003939927403A0A008F397E /* PickedPhotoViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7003939827403A0A008F397E /* PickedPhotoViewController.storyboard */; };
 		7003939B27409B2D008F397E /* PickedPhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7003939A27409B2D008F397E /* PickedPhotoViewModel.swift */; };
-		7003939E2740CC45008F397E /* UIScrollView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7003939D2740CC45008F397E /* UIScrollView+Extension.swift */; };
 		700393A127414247008F397E /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700393A027414247008F397E /* ImageCache.swift */; };
 		700393A327414788008F397E /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700393A227414788008F397E /* ImageLoader.swift */; };
+		700393A527418245008F397E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700393A427418245008F397E /* Constants.swift */; };
 		70648152273EB14E008C3CAB /* CustomRxSearchBarDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70648151273EB14E008C3CAB /* CustomRxSearchBarDelegateProxy.swift */; };
 		70648154273F4C66008C3CAB /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70648153273F4C66008C3CAB /* PhotoCollectionViewCell.swift */; };
 		70648156273F4C83008C3CAB /* PhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70648155273F4C83008C3CAB /* PhotoCollectionViewCell.xib */; };
@@ -55,9 +55,9 @@
 		70039396274039FE008F397E /* PickedPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickedPhotoViewController.swift; sourceTree = "<group>"; };
 		7003939827403A0A008F397E /* PickedPhotoViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PickedPhotoViewController.storyboard; sourceTree = "<group>"; };
 		7003939A27409B2D008F397E /* PickedPhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickedPhotoViewModel.swift; sourceTree = "<group>"; };
-		7003939D2740CC45008F397E /* UIScrollView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Extension.swift"; sourceTree = "<group>"; };
 		700393A027414247008F397E /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		700393A227414788008F397E /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		700393A427418245008F397E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		70648151273EB14E008C3CAB /* CustomRxSearchBarDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRxSearchBarDelegateProxy.swift; sourceTree = "<group>"; };
 		70648153273F4C66008C3CAB /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		70648155273F4C83008C3CAB /* PhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -109,19 +109,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7003939C2740CC25008F397E /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				7003939D2740CC45008F397E /* UIScrollView+Extension.swift */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
 		7003939F2741421E008F397E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				700393A027414247008F397E /* ImageCache.swift */,
 				700393A227414788008F397E /* ImageLoader.swift */,
+				700393A427418245008F397E /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -165,7 +158,6 @@
 				70853271273D692F00247114 /* Model */,
 				70853275273D696700247114 /* API */,
 				70648150273EB124008C3CAB /* Delegate */,
-				7003939C2740CC25008F397E /* Extension */,
 				7003939F2741421E008F397E /* Utils */,
 				70853241273D5E4600247114 /* AppDelegate.swift */,
 				70853243273D5E4600247114 /* SceneDelegate.swift */,
@@ -445,9 +437,9 @@
 				70039397274039FE008F397E /* PickedPhotoViewController.swift in Sources */,
 				70853277273D78BA00247114 /* PhotoSearchResult.swift in Sources */,
 				708E1DD6273E9441008A8DC9 /* PhotoSearchViewController.swift in Sources */,
-				7003939E2740CC45008F397E /* UIScrollView+Extension.swift in Sources */,
 				70648154273F4C66008C3CAB /* PhotoCollectionViewCell.swift in Sources */,
 				70853244273D5E4600247114 /* SceneDelegate.swift in Sources */,
+				700393A527418245008F397E /* Constants.swift in Sources */,
 				70853283273D850100247114 /* PhotoAPI.swift in Sources */,
 				70648152273EB14E008C3CAB /* CustomRxSearchBarDelegateProxy.swift in Sources */,
 			);

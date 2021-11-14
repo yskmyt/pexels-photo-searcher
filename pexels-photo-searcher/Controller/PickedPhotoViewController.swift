@@ -31,6 +31,10 @@ class PickedPhotoViewController: UIViewController {
     }
 
     private func setupBindings() {
+        viewModel.photographer
+            .bind(to: navigationItem.rx.title)
+            .disposed(by: disposeBag)
+        
         viewModel.image
             .bind(to: imageView.rx.image)
             .disposed(by: disposeBag)
