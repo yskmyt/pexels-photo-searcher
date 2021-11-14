@@ -26,7 +26,11 @@ public final class ImageLoader {
         self.cache = cache
     }
 
-    public func loadImage(from url: URL) -> Observable<UIImage?> {
+    public func loadImage(from url: String) -> Observable<UIImage?> {
+        guard let url = URL(string: url) else {
+            return Observable.just(nil).single()
+        }
+
         if let image = cache[url] {
             return Observable.just(image).single()
         }

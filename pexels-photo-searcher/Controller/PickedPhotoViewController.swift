@@ -26,12 +26,14 @@ class PickedPhotoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupBindings()
         setupImageView()
+        setupBindings()
     }
 
     private func setupBindings() {
-
+        viewModel.image
+            .bind(to: imageView.rx.image)
+            .disposed(by: disposeBag)
     }
 
     private func setupImageView() {

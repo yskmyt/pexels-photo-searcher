@@ -17,7 +17,6 @@ final class PhotoSearchViewModel {
     private let disposeBag = DisposeBag()
     private let perPage = 20
 
-    private var prevPageUrl = ""
     private var nextPageUrl = ""
     
     init(photoAPI: IPhotoAPI) {
@@ -43,20 +42,9 @@ final class PhotoSearchViewModel {
                 let addedCellDataList = self?.makeCellData(from: result.photos) ?? []
                 self?.cellDataList.accept(currentCellDataList + addedCellDataList)
                 self?.nextPageUrl = result.nextPage ?? ""
-                self?.prevPageUrl = result.prevPage ?? ""
             })
             .disposed(by: disposeBag)
     }
-
-//    func loadPreviousPhotoData() {
-//        guard !nextPageUrl.isEmpty else { return }
-//        photoAPI.fetchNextPhotoData(url: nextPageUrl)
-//            .subscribe(onNext: { [weak self] result in
-//                self?.nextPageUrl = result.nextPage ?? ""
-//                self?.prevPageUrl = result.prevPage ?? ""
-//            })
-//            .disposed(by: disposeBag)
-//    }
 
     private func makeCellData(from dataList: [PhotoData]) -> [PhotoCellData] {
         return dataList.map { data in

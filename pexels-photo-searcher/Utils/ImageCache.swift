@@ -46,7 +46,7 @@ public final class ImageCache: ImageCacheType {
         public let countLimit: Int
         public let memoryLimit: Int
 
-        public static let defaultConfig = Config(countLimit: 100, memoryLimit: 1024 * 1024 * 30) // 50 MB
+        public static let defaultConfig = Config(countLimit: 100, memoryLimit: 1024 * 1024 * 50) // 50 MB
     }
 
     public init(config: Config = Config.defaultConfig) {

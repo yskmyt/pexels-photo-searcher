@@ -58,16 +58,9 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
     }
 
-    private func loadImage(from url: String) -> Observable<UIImage?> {
-        guard let url = URL(string: url) else {
-            return Observable.just(nil).single()
-        }
-        return ImageLoader.shared.loadImage(from: url)
-    }
-
     func configure(_ data: PhotoCellData) {
         testLabel.text = data.photographer
-        loadImage(from: data.imageUrl)
+        ImageLoader.shared.loadImage(from: data.imageUrl)
             .bind(to: imageView.rx.image)
             .disposed(by: disposeBag)
     }
