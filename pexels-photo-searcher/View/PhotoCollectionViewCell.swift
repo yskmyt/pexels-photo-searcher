@@ -14,7 +14,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         return String(describing: self)
     }
 
-    @IBOutlet private weak var testLabel: UILabel!
+    @IBOutlet private weak var photographerLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
 
     private var disposeBag = DisposeBag()
@@ -34,7 +34,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
-        testLabel.text = ""
+        photographerLabel.text = ""
         imageView.image = nil
     }
 
@@ -51,15 +51,11 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
 
     private func initializeView() {
         self.bringSubviewToFront(contentView)
-        setupImageView()
-    }
-
-    private func setupImageView() {
         imageView.contentMode = .scaleAspectFill
     }
 
     func configure(_ data: PhotoCellData) {
-        testLabel.text = data.photographer
+        photographerLabel.text = "Photo by \(data.photographer)"
         ImageLoader.shared.loadImage(from: data.imageUrl)
             .bind(to: imageView.rx.image)
             .disposed(by: disposeBag)

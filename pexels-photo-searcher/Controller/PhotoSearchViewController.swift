@@ -42,8 +42,8 @@ final class PhotoSearchViewController: UIViewController {
         button.addTarget(self, action: #selector(didTapLogo), for: .touchUpInside)
 
         let menuBarItem = UIBarButtonItem(customView: button)
-        let widthAnchor = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 80)
-        let heightAnchor = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 33)
+        let widthAnchor = menuBarItem.customView?.widthAnchor.constraint(equalToConstant: 100)
+        let heightAnchor = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 40)
         widthAnchor?.isActive = true
         heightAnchor?.isActive = true
         self.navigationItem.leftBarButtonItem = menuBarItem
@@ -87,8 +87,9 @@ final class PhotoSearchViewController: UIViewController {
 
     private func setFlowLayout() {
         let layout = UICollectionViewFlowLayout()
-        let itemWidth = (collectionView.bounds.width - CGFloat(30)) / CGFloat(3)
-        layout.minimumInteritemSpacing = 0
+        let itemWidth = (collectionView.bounds.width - CGFloat(26)) / CGFloat(2)
+        layout.minimumInteritemSpacing = 2
+        layout.minimumLineSpacing = 2
         layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
         collectionView.setCollectionViewLayout(layout, animated: true)
     }

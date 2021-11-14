@@ -11,7 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoCollectionViewCell" customModule="pexels_photo_searcher" customModuleProvider="target">
             <connections>
                 <outlet property="imageView" destination="1ST-qs-vGm" id="6AH-kS-Qhu"/>
-                <outlet property="testLabel" destination="3s8-xp-pdt" id="mG5-DX-F8f"/>
+                <outlet property="photographerLabel" destination="vHQ-Cf-y9j" id="df8-Hv-rFr"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -22,24 +22,37 @@
                 <rect key="frame" x="0.0" y="0.0" width="160" height="161"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3s8-xp-pdt">
-                        <rect key="frame" x="0.0" y="0.0" width="160" height="19.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1ST-qs-vGm">
-                        <rect key="frame" x="0.0" y="19.5" width="160" height="141.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="160" height="161"/>
                     </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b5e-06-nb3">
+                        <rect key="frame" x="0.0" y="145" width="160" height="16"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vHQ-Cf-y9j">
+                                <rect key="frame" x="8" y="0.0" width="144" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.59607843137254901" green="0.59607843137254901" blue="0.61568627450980395" alpha="0.21676760303730869" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="vHQ-Cf-y9j" secondAttribute="trailing" constant="8" id="WGP-iN-Ctw"/>
+                            <constraint firstItem="vHQ-Cf-y9j" firstAttribute="top" secondItem="b5e-06-nb3" secondAttribute="top" id="fxu-2w-CiA"/>
+                            <constraint firstAttribute="bottom" secondItem="vHQ-Cf-y9j" secondAttribute="bottom" id="h2A-WR-5SE"/>
+                            <constraint firstItem="vHQ-Cf-y9j" firstAttribute="leading" secondItem="b5e-06-nb3" secondAttribute="leading" constant="8" id="u69-wl-opW"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="3s8-xp-pdt" firstAttribute="leading" secondItem="8ny-y9-8Q6" secondAttribute="leading" id="HGc-dX-nES"/>
+                    <constraint firstAttribute="trailing" secondItem="b5e-06-nb3" secondAttribute="trailing" id="2Le-nq-2Fe"/>
                     <constraint firstItem="1ST-qs-vGm" firstAttribute="leading" secondItem="8ny-y9-8Q6" secondAttribute="leading" id="Im0-wq-gbd"/>
-                    <constraint firstItem="3s8-xp-pdt" firstAttribute="top" secondItem="8ny-y9-8Q6" secondAttribute="top" id="TLN-k5-g4I"/>
+                    <constraint firstItem="b5e-06-nb3" firstAttribute="leading" secondItem="8ny-y9-8Q6" secondAttribute="leading" id="IrY-ct-bhJ"/>
+                    <constraint firstAttribute="bottom" secondItem="b5e-06-nb3" secondAttribute="bottom" id="S3f-Bg-j5f"/>
                     <constraint firstAttribute="trailing" secondItem="1ST-qs-vGm" secondAttribute="trailing" id="Trq-mH-5Wf"/>
-                    <constraint firstItem="1ST-qs-vGm" firstAttribute="top" secondItem="3s8-xp-pdt" secondAttribute="bottom" id="j47-6s-dBO"/>
-                    <constraint firstAttribute="trailing" secondItem="3s8-xp-pdt" secondAttribute="trailing" id="lZb-vD-O3Z"/>
+                    <constraint firstItem="b5e-06-nb3" firstAttribute="height" secondItem="8ny-y9-8Q6" secondAttribute="height" multiplier="0.1" id="kB3-aQ-CCP"/>
                     <constraint firstAttribute="bottom" secondItem="1ST-qs-vGm" secondAttribute="bottom" id="pRu-nL-Xyj"/>
+                    <constraint firstItem="1ST-qs-vGm" firstAttribute="top" secondItem="8ny-y9-8Q6" secondAttribute="top" id="uBw-bJ-5Rs"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="160" height="161"/>
