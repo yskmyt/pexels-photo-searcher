@@ -27,33 +27,33 @@ final class PhotoSearchViewModel {
     func search(text: String) {
         self.cellDataList.accept([])
         photoAPI.fetchPhotoData(searchText: text, perPage: perPage)
-            .subscribe(onNext: { [unowned self] result in
-                let cellDataList = self.makeCellData(from: result.photos)
-                self.cellDataList.accept(cellDataList)
-                self.nextPageUrl = result.nextPage ?? ""
-            })
-            .disposed(by: disposeBag)
-    }
-
-    func loadMorePhotoData() {
-        guard !nextPageUrl.isEmpty else { return }
-        photoAPI.fetchNextPhotoData(url: nextPageUrl)
             .subscribe(onNext: { [weak self] result in
-
+                let cellDataList = self?.makeCellData(from: result.photos) ?? []
+                self?.cellDataList.accept(cellDataList)
                 self?.nextPageUrl = result.nextPage ?? ""
             })
             .disposed(by: disposeBag)
     }
 
-//    private func downloadImages(_ photoDataList: [PhotoData]) {
-//        photoDataList.forEach { downloadImage($0) }
-//    }
-//
-//    private func downloadImage(_ data: PhotoData) {
-//        photoAPI.downloadImage(url: data.src.medium)
-//            .subscribe(onNext: { [weak self] image in
-//                let cellData = self?.makeCellData(data: data, image: image)
-//                self?.appendCellData(cellData)
+    func loadNextPhotoData() {
+        guard !nextPageUrl.isEmpty else { return }
+        photoAPI.fetchNextPhotoData(url: nextPageUrl)
+            .subscribe(onNext: { [weak self] result in
+                let currentCellDataList = self?.cellDataList.value ?? []
+                let addedCellDataList = self?.makeCellData(from: result.photos) ?? []
+                self?.cellDataList.accept(currentCellDataList + addedCellDataList)
+                self?.nextPageUrl = result.nextPage ?? ""
+                self?.prevPageUrl = result.prevPage ?? ""
+            })
+            .disposed(by: disposeBag)
+    }
+
+//    func loadPreviousPhotoData() {
+//        guard !nextPageUrl.isEmpty else { return }
+//        photoAPI.fetchNextPhotoData(url: nextPageUrl)
+//            .subscribe(onNext: { [weak self] result in
+//                self?.nextPageUrl = result.nextPage ?? ""
+//                self?.prevPageUrl = result.prevPage ?? ""
 //            })
 //            .disposed(by: disposeBag)
 //    }

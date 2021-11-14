@@ -56,12 +56,12 @@ final class PhotoSearchViewController: UIViewController {
             .map { [unowned self] _ in self.shouldRequestNextPage()}
             .distinctUntilChanged()
             .filter { $0 }
-            .drive(onNext: { [weak self] _ in print("self?.viewModel.loadMorePhotoData()") })
+            .drive(onNext: { [weak self] _ in self?.viewModel.loadNextPhotoData() })
             .disposed(by: disposeBag)
     }
 
     private func shouldRequestNextPage() -> Bool {
-        let edgeOffset = collectionView.frame.height / CGFloat(5)
+        let edgeOffset = collectionView.frame.height / CGFloat(3)
         return collectionView.contentSize.height > 0 &&
             collectionView.isNearBottomEdge(edgeOffset: edgeOffset)
     }
