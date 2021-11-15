@@ -19,7 +19,7 @@ extension Reactive where Base: UISearchBar {
         return CustomRxSearchBarDelegateProxy.proxy(for: base).searchBarSearchButtonClickedSubject.asObservable()
     }
 
-    public var searchText: Observable<String> {
+    public var didTapSearchButton: Observable<String> {
         return delegate.methodInvoked(#selector(UISearchBarDelegate.searchBarSearchButtonClicked(_:)))
             .map { any in
                 guard let searchBar = any.first as? UISearchBar else {
