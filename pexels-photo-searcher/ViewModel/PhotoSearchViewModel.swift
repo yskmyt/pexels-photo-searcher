@@ -12,59 +12,49 @@ import RxCocoa
 final class PhotoSearchViewModel {
     private let photoAPI: IPhotoAPI
 
-    private(set) var cellDataList = BehaviorRelay<[PhotoCellData]>(value: [])
-
-    private let disposeBag = DisposeBag()
-    private let perPage = 20
-
-    private var nextPageUrl = ""
-    
     init(photoAPI: IPhotoAPI) {
         self.photoAPI = photoAPI
     }
 
+    private(set) var cellDataList = BehaviorRelay<[PhotoCellData]>(value: [])
+    private var nextPageUrl = ""
+
+    private let disposeBag = DisposeBag()
+    private let perPage = 20
+
     func search(text: String) {
-        self.cellDataList.accept([])
         photoAPI.fetchPhotoData(searchText: text, perPage: perPage)
-            .subscribe(onNext: { [weak self] result in
-                let cellDataList = self?.makeCellData(from: result.photos) ?? []
-                self?.cellDataList.accept(cellDataList)
-                self?.nextPageUrl = result.nextPage ?? ""
-            })
+            .bind(to: setCellDataList)
             .disposed(by: disposeBag)
     }
 
     func loadNextPhotoData() {
         guard !nextPageUrl.isEmpty else { return }
         photoAPI.fetchNextPhotoData(url: nextPageUrl)
-            .subscribe(onNext: { [weak self] result in
-                let currentCellDataList = self?.cellDataList.value ?? []
-                let addedCellDataList = self?.makeCellData(from: result.photos) ?? []
-                self?.cellDataList.accept(currentCellDataList + addedCellDataList)
-                self?.nextPageUrl = result.nextPage ?? ""
-            })
+            .bind(to: appendCellDataList)
             .disposed(by: disposeBag)
-    }
-
-    private func makeCellData(from dataList: [PhotoData]) -> [PhotoCellData] {
-        return dataList.map { data in
-            PhotoCellData(id: data.id,
-                          photographer: data.photographer,
-                          photographerUrl: data.photographerUrl,
-                          imageUrl: data.src.medium)
-        }
-    }
-
-    private func appendCellData(_ appendData: PhotoCellData?) {
-        guard let data = appendData else { return }
-        let current = cellDataList.value
-        cellDataList.accept(current + [data])
     }
 }
 
-struct PhotoCellData {
-    let id: Int
-    let photographer: String
-    let photographerUrl: String
-    let imageUrl: String
+extension PhotoSearchViewModel {
+    private var setCellDataList: Binder<PhotoSearchResult> {
+        return Binder(self) { base, result  in
+            let cellDataList = base.makeCellData(from: result.photos)
+            base.cellDataList.accept(cellDataList)
+            base.nextPageUrl = result.nextPage ?? ""
+        }
+    }
+
+    private var appendCellDataList: Binder<PhotoSearchResult> {
+        return Binder(self) { base, result  in
+            let currentCellDataList = base.cellDataList.value
+            let addedCellDataList = base.makeCellData(from: result.photos)
+            base.cellDataList.accept(currentCellDataList + addedCellDataList)
+            base.nextPageUrl = result.nextPage ?? ""
+        }
+    }
+
+    private func makeCellData(from dataList: [PhotoData]) -> [PhotoCellData] {
+        dataList.map { PhotoCellData(from: $0) }
+    }
 }

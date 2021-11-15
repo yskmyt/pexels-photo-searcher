@@ -55,7 +55,8 @@ extension HTTPClient {
     }
 
     private func makeRequest(method: HTTPMethod, url: String, headers: [String:String]?) -> URLRequest {
-        guard let url = URL(string: url) else {
+        guard let encodedString = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let url = URL(string: encodedString) else {
             fatalError("Unable to convert \(url) to URL")
         }
 
