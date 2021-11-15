@@ -28,24 +28,26 @@ final class HTTPClient: IHttpClient {
         let wrapUrl = wrapUrl(path)
         let request = makeRequest(method: HTTPMethod.GET, url: wrapUrl, headers: headers)
         return URLSession.shared.rx.response(request: request)
-            .map { response, data in
+            .map { (response, data) in
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 return try decoder.decode(T.self, from: data)
-        }
-        .asObservable()
+            }
+            .asObservable()
+            .single()
     }
 
     //　for protocol include url
     func get<T: Decodable>(responseType: T.Type, url: String, headers: [String:String]?) -> Observable<T> {
         let request = makeRequest(method: HTTPMethod.GET, url: url, headers: headers)
         return URLSession.shared.rx.response(request: request)
-            .map { response, data in
+            .map { (response, data) in
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
                 return try decoder.decode(T.self, from: data)
             }
             .asObservable()
+            .single()
     }
 }
 

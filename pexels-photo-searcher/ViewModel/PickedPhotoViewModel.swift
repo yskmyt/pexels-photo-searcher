@@ -17,6 +17,6 @@ final class PickedPhotoViewModel {
     func setPhotoCellData(_ data: PhotoCellData) {
         self.data = Observable.just(data)
         self.photographer = Observable.just(data.photographer)
-        self.image = ImageLoader.shared.loadImage(from: data.imageUrl)
+        self.image = ImageLoader.shared.loadImage(from: data.photoSource.medium)
     }
 }

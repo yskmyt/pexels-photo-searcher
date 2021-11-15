@@ -12,12 +12,12 @@ struct PhotoCellData {
     let id: Int
     let photographer: String
     let photographerUrl: String
-    let imageUrl: String
+    let photoSource: PhotoSource
 
     init(from data: PhotoData) {
         self.id = data.id
         self.photographer = data.photographer
         self.photographerUrl = data.photographerUrl
-        self.imageUrl = data.src.large
+        self.photoSource = data.src
     }
 }

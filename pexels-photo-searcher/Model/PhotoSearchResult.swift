@@ -16,6 +16,15 @@ struct PhotoSearchResult: Codable {
     let photos: [PhotoData]
     let nextPage: String?
     let prevPage: String?
+
+    static func empty() -> PhotoSearchResult {
+        return PhotoSearchResult(totalResults: 0,
+                                 page: 0,
+                                 perPage: 0,
+                                 photos: [],
+                                 nextPage: nil,
+                                 prevPage: nil)
+    }
 }
 
 struct PhotoData: Codable {

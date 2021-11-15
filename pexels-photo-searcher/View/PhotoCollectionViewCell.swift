@@ -56,7 +56,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
 
     func configure(_ data: PhotoCellData) {
         photographerLabel.text = "Photo by \(data.photographer)"
-        ImageLoader.shared.loadImage(from: data.imageUrl)
+        ImageLoader.shared.loadImage(from: data.photoSource.medium)
             .bind(to: imageView.rx.image)
             .disposed(by: disposeBag)
     }

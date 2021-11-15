@@ -16,11 +16,6 @@ public final class ImageLoader {
     public static let shared = ImageLoader()
 
     private let cache: ImageCacheType
-    private lazy var backgroundQueue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 5
-        return queue
-    }()
 
     public init(cache: ImageCacheType = ImageCache()) {
         self.cache = cache
@@ -37,12 +32,12 @@ public final class ImageLoader {
 
         let request = URLRequest(url: url)
         return URLSession.shared.rx.response(request: request)
+            .subscribe(on: ConcurrentDispatchQueueScheduler.init(qos: .userInitiated))
             .map { (response, data) in UIImage(data: data) }
-            .catchAndReturn(nil)
-            .do { [unowned self] image in
+            .observe(on: MainScheduler.instance)
+            .do(onNext: { [unowned self] image in
                 guard let image = image else { return }
                 self.cache[url] = image
-            }
-            .asObservable().single()
+            })
     }
 }
