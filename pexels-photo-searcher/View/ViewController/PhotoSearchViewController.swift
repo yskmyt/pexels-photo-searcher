@@ -53,6 +53,8 @@ final class PhotoSearchViewController: UIViewController {
     }
 
     private func setupSearchBar() {
+        searchBar.becomeFirstResponder()
+        searchBar.placeholder = "Search for free photos"
         searchBar.rx.didTapSearchButton
             .bind(to: searchBinder)
             .disposed(by: disposeBag)
