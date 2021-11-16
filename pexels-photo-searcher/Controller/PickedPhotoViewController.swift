@@ -26,8 +26,9 @@ class PickedPhotoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupImageView()
         setupBindings()
+        setupNavigationBar()
+        setupImageView()
     }
 
     private func setupBindings() {
@@ -38,6 +39,23 @@ class PickedPhotoViewController: UIViewController {
         viewModel.image
             .bind(to: imageView.rx.image)
             .disposed(by: disposeBag)
+    }
+
+    private func setupNavigationBar() {
+        let button = UIButton(type: .system)
+        button.setTitle("More", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        let barItem = UIBarButtonItem(customView: button)
+        let widthAnchor = barItem.customView?.widthAnchor.constraint(equalToConstant: 72)
+        let heightAnchor = barItem.customView?.heightAnchor.constraint(equalToConstant: 44)
+        widthAnchor?.isActive = true
+        heightAnchor?.isActive = true
+        self.navigationItem.rightBarButtonItem = barItem
+
+        button.rx.tap
+            .bind(to: viewModel.openPhotographerUrlBinder)
+            .disposed(by: disposeBag)
+
     }
 
     private func setupImageView() {
