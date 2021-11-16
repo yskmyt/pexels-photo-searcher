@@ -26,7 +26,6 @@
 		70853244273D5E4600247114 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70853243273D5E4600247114 /* SceneDelegate.swift */; };
 		7085324B273D5E4700247114 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7085324A273D5E4700247114 /* Assets.xcassets */; };
 		7085324E273D5E4700247114 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7085324C273D5E4700247114 /* LaunchScreen.storyboard */; };
-		70853264273D5E4800247114 /* pexels_photo_searcherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70853263273D5E4800247114 /* pexels_photo_searcherUITests.swift */; };
 		70853277273D78BA00247114 /* PhotoSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70853276273D78BA00247114 /* PhotoSearchResult.swift */; };
 		70853281273D83D400247114 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70853280273D83D400247114 /* HTTPClient.swift */; };
 		70853283273D850100247114 /* PhotoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70853282273D850100247114 /* PhotoAPI.swift */; };
@@ -81,8 +80,6 @@
 		70853254273D5E4700247114 /* pexels-photo-searcherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pexels-photo-searcherTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7085325A273D5E4800247114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7085325F273D5E4800247114 /* pexels-photo-searcherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "pexels-photo-searcherUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		70853263273D5E4800247114 /* pexels_photo_searcherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pexels_photo_searcherUITests.swift; sourceTree = "<group>"; };
-		70853265273D5E4800247114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70853276273D78BA00247114 /* PhotoSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSearchResult.swift; sourceTree = "<group>"; };
 		70853280273D83D400247114 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		70853282273D850100247114 /* PhotoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAPI.swift; sourceTree = "<group>"; };
@@ -174,7 +171,6 @@
 			children = (
 				70853240273D5E4600247114 /* pexels-photo-searcher */,
 				70853257273D5E4700247114 /* pexels-photo-searcherTests */,
-				70853262273D5E4800247114 /* pexels-photo-searcherUITests */,
 				7085323F273D5E4600247114 /* Products */,
 				A3BAE4B7C83FF90BBCE19090 /* Pods */,
 				AEE952AE329C4EAA4E6B8AF3 /* Frameworks */,
@@ -217,15 +213,6 @@
 				7085325A273D5E4800247114 /* Info.plist */,
 			);
 			path = "pexels-photo-searcherTests";
-			sourceTree = "<group>";
-		};
-		70853262273D5E4800247114 /* pexels-photo-searcherUITests */ = {
-			isa = PBXGroup;
-			children = (
-				70853263273D5E4800247114 /* pexels_photo_searcherUITests.swift */,
-				70853265273D5E4800247114 /* Info.plist */,
-			);
-			path = "pexels-photo-searcherUITests";
 			sourceTree = "<group>";
 		};
 		70853271273D692F00247114 /* Model */ = {
@@ -536,7 +523,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70853264273D5E4800247114 /* pexels_photo_searcherUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
