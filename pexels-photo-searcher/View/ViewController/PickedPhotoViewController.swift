@@ -17,11 +17,22 @@ class PickedPhotoViewController: UIViewController {
     private let disposeBag = DisposeBag()
 
     static func instantiate(data: PhotoCellData) -> PickedPhotoViewController? {
-        guard let viewController: PickedPhotoViewController = UIStoryboard(name: "PickedPhotoViewController", bundle: nil).instantiateInitialViewController() else {
+        var viewController: UIViewController? {
+            let identifier = "PickedPhotoViewController"
+            let storyboard = UIStoryboard(name: identifier, bundle: nil)
+            if #available(iOS 13.0, *) {
+                return storyboard.instantiateViewController(identifier: identifier)
+            } else {
+                return storyboard.instantiateViewController(withIdentifier: identifier)
+            }
+        }
+
+        guard let pickedPhotoViewController = viewController as? PickedPhotoViewController else {
             return nil
         }
-        viewController.viewModel.setPhotoCellData(data)
-        return viewController
+
+        pickedPhotoViewController.viewModel.setPhotoCellData(data)
+        return pickedPhotoViewController
     }
 
     override func viewDidLoad() {
