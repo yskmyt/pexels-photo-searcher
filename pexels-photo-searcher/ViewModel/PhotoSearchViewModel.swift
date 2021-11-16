@@ -20,10 +20,11 @@ final class PhotoSearchViewModel {
     private var nextPageUrl = ""
 
     private let disposeBag = DisposeBag()
-    private let perPage = 20
+    private let perPage = 40
 
     func search(text: String) {
         photoAPI.fetchPhotoData(searchText: text, perPage: perPage)
+            .catchAndReturn(PhotoSearchResult.empty())
             .bind(to: setCellDataList)
             .disposed(by: disposeBag)
     }
@@ -31,6 +32,7 @@ final class PhotoSearchViewModel {
     func loadNextPhotoData() {
         guard !nextPageUrl.isEmpty else { return }
         photoAPI.fetchNextPhotoData(url: nextPageUrl)
+            .catchAndReturn(PhotoSearchResult.empty())
             .bind(to: appendCellDataList)
             .disposed(by: disposeBag)
     }

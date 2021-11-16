@@ -24,13 +24,11 @@ final class PhotoAPI: IPhotoAPI {
         return client.get(responseType: PhotoSearchResult.self,
                           path: path,
                           headers: authorizationHeader)
-            .catchAndReturn(PhotoSearchResult.empty())
     }
 
     func fetchNextPhotoData(url: String) -> Observable<PhotoSearchResult> {
         return client.get(responseType: PhotoSearchResult.self,
                           url: url,
                           headers: authorizationHeader)
-            .catchAndReturn(PhotoSearchResult.empty())
     }
 }
